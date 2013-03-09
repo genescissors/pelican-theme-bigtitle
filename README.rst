@@ -3,6 +3,10 @@ Big Title
 
 You can definitly have a look at the source, but since you are here you are looking for more.
 
+.. image:: https://raw.github.com/amirouche/pelican-theme-bigtitle/master/screenshot.png
+    :align: center
+
+
 This is an original theme for `pelican <http://blog.getpelican.com/>`_,
 built using:
 

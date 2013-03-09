@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section id="content">
+        <div class=row>
+            {% block extrarow %}{% endblock %}
+            {% for article in articles_page.object_list %}
+                <div class="four columns animated fadeInDown">
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
+                        <div class="article-title">
+                            <h2>{{ article.title }}</h2>
+                            <footer class="post-info">
+                                <abbr class="published" title="{{ article.date.isoformat() }}"> {{ article.locale_date }} </abbr>
+                                <ul>
+                                    {% for tag in article.tags %}
+                                        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </footer><!-- /.post-info -->
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        {% include 'pagination.html' %}
+    </section><!-- /#content -->
+  <script>
+    function slabTextHeadlines() {
+        $("h2").slabText({
+            // Don't slabtext the headers if the viewport is under 380px
+            "viewportBreakpoint":380
+        });
+        $("#content .row").masonry({
+            itemSelector : ".four",
+        });
+    };
+
+    $(window).load(function() {
+        slabTextHeadlines()
+    });
+  </script>  
+{% endblock content %}

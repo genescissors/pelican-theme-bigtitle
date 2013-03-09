@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+    <head>
+        {% block head %}
+            <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+            <meta charset="utf-8" />
+            {% if FEED_ALL_ATOM %}
+                <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+            {% endif %}
+            <link href="{{ SITEURL }}/theme/css/leaguegothic.css" rel="stylesheet" type="text/css" />
+            <link href="{{ SITEURL }}/theme/css/slabtext.css" rel="stylesheet" type="text/css" />
+            <link href="{{ SITEURL }}/theme/css/foundation.min.css" rel="stylesheet" type="text/css" />
+            <link href="{{ SITEURL }}/theme/css/fadeindown.css" rel="stylesheet" type="text/css" />
+            <link href="{{ SITEURL }}/theme/css/zenburn.css" rel="stylesheet" type="text/css" />
+            <link href="{{ SITEURL }}/theme/css/app.css" rel="stylesheet" type="text/css" />
+            <script src="{{ SITEURL }}/theme/js/jquery.js" type="text/javascript"></script>
+            <script src="{{ SITEURL }}/theme/js/jquery.slabtext.min.js" type="text/javascript"></script>
+            <script src="{{ SITEURL }}/theme/js/jquery.masonry.min.js" type="text/javascript"></script>
+        {% endblock head %}
+    </head>
+
+    <body id="index" class="home">
+        <div class=row>
+            <header id="banner" class="body twelve columns">
+                <nav id="menu" class="right">
+                    <ul>
+                        {% for title, link in MENUITEMS %}
+                            <li><a href="{{ link }}">{{ title }}</a></li>
+                        {% endfor %}
+                        {% for p in PAGES %}
+                            <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                        {% endfor %}
+                        {% for cat, null in categories %}
+                            <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav><!-- /#menu -->
+                <h1><a href="{{ SITEURL }}">{{ SITENAME }} <small>{{ SITESUBTITLE }}</small></a></h1>
+            </header><!-- /#banner -->
+        </div>
+        {% block content %}
+        {% endblock %}
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-29219470-2']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </body>
+</html>
